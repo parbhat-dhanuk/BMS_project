@@ -34,7 +34,6 @@ const AppRoutes = () => {
               <Route path="/blog/edit/:id" element={<EditBlog />} />
               <Route path="/blog/:id" element={<BlogDetails />} />
               <Route path="/myblogs" element={<MyBlogs />} />
-              {/* <Route path="/myblogs" element={<MyBlog />} /> */}
             </Route>
           </Route>
           {/* 404 route (must be last) */}

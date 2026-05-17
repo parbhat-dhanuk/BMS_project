@@ -22,7 +22,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user,loading,isAuthChecked } = useSelector((state) => state.auth);
-console.log(user,"navbar user")
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -36,7 +35,7 @@ console.log(user,"navbar user")
   const handleLogout = async () => {
     if (loading) return;
     try {
-      await dispatch(userLogout()).unwrap();
+      await dispatch(userLogout());
       navigate("/");
     } catch (error) {
       toast.error(error)

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const ProtectedRoute = () => {
   const { user, isAuthChecked } = useSelector((state) => state.auth);
-
   if (!isAuthChecked) {
     return <Spinner />;
   }
