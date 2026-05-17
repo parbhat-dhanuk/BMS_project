@@ -19,7 +19,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(loginUser(formData));
+      await dispatch(loginUser(formData)).unwrap();
       await dispatch(checkAuth());
       navigate("/blogs/all");
     } catch (error) {

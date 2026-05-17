@@ -1565,3 +1565,110 @@
 {"level":"info","message":"Database Connected Successfully","service":"BMS"}
 {"level":"info","message":"All models were synchronized successfully.","service":"BMS"}
 {"level":"info","message":"Server is running on http://localhost:8181","service":"BMS"}
+{"level":"info","message":"Database Connected Successfully","service":"BMS"}
+{"level":"info","message":"All models were synchronized successfully.","service":"BMS"}
+{"level":"info","message":"Server is running on http://localhost:8181","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"Logout end point hit...","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"Logout end point hit...","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"warn","message":"Invalid Password","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"Login end point hit ...","service":"BMS"}
+{"level":"info","message":"getCurrentUser end point hit...","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getAllBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"All Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"getMyBlogs end point hit...","service":"BMS"}
+{"level":"info","message":"Blogs fetched successfully","service":"BMS"}
+{"level":"info","message":"Logout end point hit...","service":"BMS"}
+{"level":"info","message":"Database Connected Successfully","service":"BMS"}
+{"level":"info","message":"All models were synchronized successfully.","service":"BMS"}
+{"level":"info","message":"Server is running on http://localhost:8181","service":"BMS"}

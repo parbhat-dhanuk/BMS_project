@@ -4,11 +4,13 @@ import { useTheme } from "./context/ThemeProvider";
 import AppRoutes from "./routes/AppRoutes";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "./features/userSlice";
+import useAxiosInterceptor from "./api/useAxiosInterceptor";
 
 
 function App() {
   const {dark}=useTheme()
   const dispatch = useDispatch();
+  useAxiosInterceptor();
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);

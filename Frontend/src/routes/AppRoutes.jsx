@@ -17,7 +17,6 @@ const NotFound = lazy(() => import("../pages/NotFound"));
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter>
       <Suspense fallback={<Spinner />}>
         <Routes>
           <Route element={<MainLayout />}>
@@ -40,7 +39,6 @@ const AppRoutes = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
   );
 };
 
