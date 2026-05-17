@@ -3,17 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from "lucide-react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { registerUser } from "../../features/userSlice";
+import STATUS from "../../status/status";
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { data, loading, status, error } = useSelector((state) => state.auth);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -22,16 +24,11 @@ const RegistrationForm = () => {
     e.preventDefault();
     if (loading) return;
     try {
-      setLoading(true);
-      const response = await axiosInstance.post("/auth/register", formData);
-      if (response.data.success) {
-        toast.success(response.data.message);
-        navigate("/login");
-      }
+      const response=await dispatch(registerUser(formData)).unwrap();
+      toast.success(response?.message);
+      navigate("/login");
     } catch (error) {
-      toast.error(error.response?.data?.message);
-    } finally {
-      setLoading(false);
+      toast.error(error);
     }
   };
 
