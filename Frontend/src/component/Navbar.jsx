@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeProvider";
-import { useAuth } from "../context/AuthProvider";
 import {
   Sun,
   Moon,
@@ -12,15 +11,18 @@ import {
   User,
   Info,
 } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { userLogout } from "../features/userSlice";
 
 const Navbar = () => {
   const { dark, toggleTheme } = useTheme();
-  const { isAuth, user, logout } = useAuth();
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { user,loading,isAuthChecked } = useSelector((state) => state.auth);
+console.log(user,"navbar user")
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -32,15 +34,23 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = async () => {
-    setLoading(true);
-    await logout();
-    navigate("/");
+    if (loading) return;
+    try {
+      await dispatch(userLogout()).unwrap();
+      navigate("/");
+    } catch (error) {
+      toast.error(error)
+    }
   };
 
+  if (!isAuthChecked) {
+  return null;
+}
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
         {/* Logo */}
+        
         <Link
           to="/"
           className="text-base font-semibold text-gray-900 dark:text-white tracking-tight whitespace-nowrap shrink-0"
@@ -50,7 +60,7 @@ const Navbar = () => {
 
         {/* Nav links */}
         <div className="hidden sm:flex items-center gap-1">
-          {isAuth && (
+          {user && (
             <>
               <NavLink to="/blog/add" icon={<PenSquare size={14} />}>
                 Add Blog
@@ -79,7 +89,7 @@ const Navbar = () => {
             {dark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          {isAuth ? (
+          {user ? (
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setOpen((v) => !v)}

@@ -23,7 +23,7 @@ router.post("/auth/login", loginUser);
 router.post("/auth/logout", logoutUser);
 
 router.use(verifyAccessToken);
-router.post("/auth/me", getCurrentUser);
+router.get("/auth/me", getCurrentUser);
 
 //blogs routes
 router.post("/blog", addBlog);

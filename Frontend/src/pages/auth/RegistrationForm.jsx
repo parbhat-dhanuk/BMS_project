@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../../features/userSlice";
-import STATUS from "../../status/status";
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -15,7 +14,7 @@ const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { data, loading, status, error } = useSelector((state) => state.auth);
+  const { loading, status, error } = useSelector((state) => state.auth);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

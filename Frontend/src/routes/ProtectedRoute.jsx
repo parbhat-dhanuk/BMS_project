@@ -1,20 +1,16 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
 import { useEffect } from "react";
 import Spinner from "../component/common/Spinner";
+import { useSelector } from "react-redux";
 
 const ProtectedRoute = () => {
-  const { isAuth, checkAuth } = useAuth();
+  const { user, isAuthChecked } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  if (isAuth === null) {
+  if (!isAuthChecked) {
     return <Spinner />;
   }
 
-  return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
+  return user ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;

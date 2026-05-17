@@ -2,16 +2,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 import { toast } from "react-toastify";
-import { useAuth } from "../../context/AuthProvider";
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth, loginUser } from "../../features/userSlice";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { checkAuth } = useAuth();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { loading, status, error } = useSelector((state) => state.auth);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -19,18 +19,12 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      const response = await axiosInstance.post("/auth/login", formData);
-      if (response.data.success) {
-        await checkAuth();
-        toast.success(response.data.message);
-        navigate("/blogs/all");
-      }
+      await dispatch(loginUser(formData)).unwrap();
+      await dispatch(checkAuth()).unwrap();
+      navigate("/blogs/all");
     } catch (error) {
-      toast.error(error.response?.data?.message);
-    } finally {
-      setLoading(false);
-    }
+      toast.error(error);
+    } 
   };
 
   return (
