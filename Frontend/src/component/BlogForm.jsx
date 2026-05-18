@@ -3,12 +3,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
 import { toast } from "react-toastify";
 import { PenSquare, ArrowRight, ArrowLeft } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addBlog, editBlog, getSingleBlog } from "../features/blogSlice";
 
 const BlogForm = ({ type }) => {
   const [formData, setFormData] = useState({ title: "", description: "" });
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+  const dispatch=useDispatch()
+  const {loading,blog}=useSelector((state)=>state.blog)
+  const blogData=blog?.blog;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -17,44 +21,39 @@ const BlogForm = ({ type }) => {
     e.preventDefault();
     if (loading) return;
     try {
-      setLoading(true);
       if (id) {
-        const response = await axiosInstance.patch(`/blog/${id}`, formData);
-        if (response.data.success) {
-          toast.success(response.data.message);
+        const response = await dispatch(editBlog({id,formData})).unwrap();
+          toast.success(response.message);
           navigate("/blogs/all");
-        }
       } else {
-        const response = await axiosInstance.post("/blog", formData);
-        if (response.data.success) {
-          toast.success(response.data.message);
+        const response = await dispatch(addBlog(formData)).unwrap();
+          toast.success(response.message);
           navigate("/blogs/all");
-        }
       }
     } catch (error) {
-      toast.error(error.response?.data?.message);
-    } finally {
-      setLoading(false);
+      toast.error(error);
     }
   };
 
   useEffect(() => {
     if (id) {
-      getSingleBlog();
+      getOneBlog();
     }
   }, [id]);
 
-  const getSingleBlog = async () => {
+  useEffect(()=>{
+ if (blogData) {
+    setFormData({
+      title: blogData.title || "",
+      description: blogData.description || "",
+    });
+  }
+  },[blogData])
+  const getOneBlog = async () => {
     try {
-      setLoading(true);
-      const response = await axiosInstance.get(`/blog/${id}`);
-      if (response.data.success) {
-        setFormData(response.data.blog);
-      }
+      const response = await dispatch(getSingleBlog(id)).unwrap();
     } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
+      toast.error(error);
     }
   };
 

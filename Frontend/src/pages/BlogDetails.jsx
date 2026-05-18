@@ -4,51 +4,42 @@ import axiosInstance from "../api/axiosInstance";
 import Spinner from "../component/common/Spinner";
 import { ArrowLeft, Calendar, User, Pencil, Trash2 } from "lucide-react";
 import { toast } from "react-toastify";
-import { useAuth } from "../context/AuthProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBlog, getSingleBlog } from "../features/blogSlice";
 
 const BlogDetails = () => {
-  const [blog, setBlog] = useState(null);
   const { id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [deleting, setDeleting] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const isOwner = blog?.userId === user?.id;
+  const {loading,user}=useSelector(state=>state.auth)
+  const {blog}=useSelector(state=>state.blog)
+  const blogData=blog?.blog;
+  const dispatch=useDispatch();
+  const isOwner = blogData?.userId === user?.id;
   const isAdmin = user?.Role?.roleCode === "admin";
 
-  const getSingleBlog = async () => {
+  const getOneBlog = async () => {
     try {
-      setLoading(true);
-      const response = await axiosInstance.get(`/blog/${id}`);
-      if (response.data.success) {
-        setBlog(response.data.blog);
-      }
+      const response = await dispatch(getSingleBlog(id));
     } catch (error) {
       console.log(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleDelete = async () => {
     try {
-      setDeleting(true);
-      const response = await axiosInstance.delete(`/blog/${id}`);
-      if (response.data.success) {
-        toast.success(response.data.message);
+      const response = await dispatch(deleteBlog(id)).unwrap();
+        toast.success(response.message);
         navigate(-1);
-      }
     } catch (error) {
-      console.log(error.message);
+      toast.error(error);
     } finally {
-      setDeleting(false);
       setShowDeleteModal(false);
     }
   };
 
   useEffect(() => {
-    getSingleBlog();
+    getOneBlog();
   }, []);
 
   if (loading) return <Spinner />;
@@ -80,13 +71,13 @@ const BlogDetails = () => {
           <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-gray-500">
             <span className="flex items-center gap-1.5">
               <User size={12} />
-              {blog.User.username}
+              {blogData.User.username}
             </span>
 
             {blog.createdAt && (
               <span className="flex items-center gap-1.5">
                 <Calendar size={12} />
-                {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                {new Date(blogData.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -118,7 +109,7 @@ const BlogDetails = () => {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-relaxed wrap-break-word">
-          {blog.title}
+          {blogData.title}
         </h1>
 
         {/* Divider */}
@@ -126,7 +117,7 @@ const BlogDetails = () => {
 
         {/* Body */}
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base wrap-break-word">
-          {blog.description}
+          {blogData.description}
         </p>
       </article>
 
@@ -155,10 +146,10 @@ const BlogDetails = () => {
               </button>
               <button
                 onClick={handleDelete}
-                disabled={deleting}
+                disabled={loading}
                 className="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 disabled:opacity-60 disabled:cursor-not-allowed rounded-xl transition-colors"
               >
-                {deleting ? "Deleting..." : "Delete"}
+                {loading ? "Deleting..." : "Delete"}
               </button>
             </div>
           </div>
