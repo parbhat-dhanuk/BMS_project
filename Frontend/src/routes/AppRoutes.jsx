@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import Spinner from "../component/common/Spinner";
+import { useSelector } from "react-redux";
 
 const Home = lazy(() => import("../pages/Home"));
 const LoginForm = lazy(() => import("../pages/auth/LoginForm"));
@@ -16,13 +17,14 @@ const MyBlogs = lazy(() => import("../pages/MyBlogs"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 const AppRoutes = () => {
+  const {user}=useSelector((state)=>state.auth)
   return (
       <Suspense fallback={<Spinner />}>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegistrationForm />} />
+            <Route path="/login" element={!user ? <LoginForm /> : <Navigate to='/'/> } />
+            <Route path="/register" element={!user ? <RegistrationForm /> : <Navigate to='/' />} />
             <Route path="/about" element={<About />} />
           </Route>
 
