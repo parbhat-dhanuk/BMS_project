@@ -52,6 +52,24 @@ export const deleteBlog = createAsyncThunk(
   },
 );
 
+export const myBlogs=createAsyncThunk('blog/myBlogs',async(currentPage,thunkAPI)=>{
+  try {
+    const response=await axiosInstance.get(`/blog/me?page=${currentPage}&limit=6`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message)
+  }
+})
+
+export const getAllblogs=createAsyncThunk('blog/getAllblogs',async(currentPage,thunkAPI)=>{
+  try {
+    const response=await axiosInstance.get(`/blog?page=${currentPage}&limit=6`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message)
+  }
+})
+
 const initialState = {
   loading: false,
   status: null,
@@ -128,7 +146,38 @@ const initialState = {
         state.status=STATUS.ERROR;
         state.error=action.payload;
       })
-
+      //GET MY BLOGS
+      .addCase(myBlogs.pending,(state)=>{
+        state.loading=true;
+        state.status=STATUS.LOADING;
+        state.error=null;
+      })
+      .addCase(myBlogs.fulfilled,(state,action)=>{
+        state.loading=false;
+        state.status=STATUS.SUCCESS;
+        state.blog=action.payload;
+      })
+      .addCase(myBlogs.rejected,(state,action)=>{
+        state.loading=false;
+        state.status=STATUS.ERROR;
+        state.blog=action.payload;
+      })
+      //GET ALL BLOGS
+      .addCase(getAllblogs.pending,(state)=>{
+        state.loading=true;
+        state.status=STATUS.LOADING;
+        state.error=null;
+      })
+      .addCase(getAllblogs.fulfilled,(state,action)=>{
+        state.loading=false;
+        state.status=STATUS.SUCCESS;
+        state.blog=action.payload;
+      })
+      .addCase(getAllblogs.rejected,(state,action)=>{
+        state.loading=false;
+        state.status=STATUS.ERROR;
+        state.error=action.payload;
+      })
     },
 });
 

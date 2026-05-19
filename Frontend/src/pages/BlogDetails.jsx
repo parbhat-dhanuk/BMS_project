@@ -71,7 +71,7 @@ const BlogDetails = () => {
           <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-gray-500">
             <span className="flex items-center gap-1.5">
               <User size={12} />
-              {blogData.User.username}
+              {blogData?.User?.username}
             </span>
 
             {blog.createdAt && (
@@ -109,7 +109,7 @@ const BlogDetails = () => {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-relaxed wrap-break-word">
-          {blogData.title}
+          {blogData?.title}
         </h1>
 
         {/* Divider */}
@@ -117,7 +117,7 @@ const BlogDetails = () => {
 
         {/* Body */}
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base wrap-break-word">
-          {blogData.description}
+          {blogData?.description}
         </p>
       </article>
 

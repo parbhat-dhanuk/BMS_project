@@ -3,26 +3,20 @@ import BlogCard from "../component/BlogCard";
 import axiosInstance from "../api/axiosInstance";
 import Spinner from "../component/common/Spinner";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import {useDispatch,useSelector} from "react-redux";
+import { getAllblogs } from "../features/blogSlice";
 const BlogsList = () => {
-  const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(true);
-
+ const dispatch=useDispatch();
+ const {loading,blog}=useSelector(state=>state.blog);
+ const blogs=blog?.data;
+ const totalPages=blog?.data?.totalPages||0;
   const getAllBlogs = async () => {
     try {
-      setLoading(true);
-      const response = await axiosInstance.get(`/blog?page=${currentPage}&limit=6`);
-      if (response.data.success) {
-        setBlogs(response.data.data);
-        setTotalPages(response.data.totalPages);
-      }
+      const response = await dispatch(getAllblogs(currentPage)).unwrap();
     } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
+      console.log(error);
+    } 
   };
 
   useEffect(() => {
@@ -50,9 +44,9 @@ const BlogsList = () => {
       </div>
 
       {/* Grid */}
-      {blogs.length > 0 ? (
+      {blogs?.length > 0 ? (
         <div className="grid md:grid-cols-2 gap-5">
-          {blogs.map((blog) => (
+          {blogs?.map((blog) => (
             <BlogCard key={blog.id} data={blog} />
           ))}
         </div>
